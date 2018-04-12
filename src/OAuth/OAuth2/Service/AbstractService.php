@@ -224,6 +224,11 @@ abstract class AbstractService extends BaseAbstractService implements ServiceInt
             $this->getExtraOAuthHeaders()
         );
         $token = $this->parseAccessTokenResponse($responseBody);
+        
+        if (!$token->getRefreshToken()) {
+            $token->setRefreshToken($refreshToken);
+        }
+        
         $this->storage->storeAccessToken($this->service(), $token);
 
         return $token;
