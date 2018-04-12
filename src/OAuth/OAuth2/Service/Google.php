@@ -129,6 +129,7 @@ class Google extends AbstractService
     const SCOPE_CLASSROOM_ROSTERS_READONLY  = 'https://www.googleapis.com/auth/classroom.rosters.readonly';
 
     protected $accessType = 'online';
+    protected $params;
 
     public function __construct(
         CredentialsInterface $credentials,
@@ -152,12 +153,21 @@ class Google extends AbstractService
         $this->accessType = $accessType;
     }
 
+    public function setExtraParam($params)
+    {
+        $this->params = $params;
+    }
+
     /**
      * {@inheritdoc}
      */
     public function getAuthorizationEndpoint()
     {
-        return new Uri('https://accounts.google.com/o/oauth2/auth?access_type=' . $this->accessType);
+        $params = array_merge([
+            'access_type' => $this->accessType,
+        ], $this->params);
+
+        return new Uri('https://accounts.google.com/o/oauth2/auth?' . http_build_query($params));
     }
 
     /**
