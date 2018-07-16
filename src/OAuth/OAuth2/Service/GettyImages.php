@@ -124,7 +124,8 @@ class GettyImages extends AbstractService
     protected function getExtraApiHeaders()
     {
         return [
-            'Api-Key' => $this->credentials->getConsumerId()
+            'Api-Key' => $this->credentials->getConsumerId(),
+            'Accept-Language' => 'fr'
         ];
     }
 }
