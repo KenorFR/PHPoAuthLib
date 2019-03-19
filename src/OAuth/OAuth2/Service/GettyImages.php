@@ -86,6 +86,11 @@ class GettyImages extends AbstractService
 
     public function recordAccessToken($datas)
     {
+        if ($datas['expires_in'] == 31536000) {
+            // le token dure 1 an, mais pour acheter, il ne dure que 30 jours, on force à 25 jours
+            $datas['expires_in'] = 2160000;
+        }
+        
         $token = $this->parseAccessTokenResponse(json_encode($datas));
         $token->setLifetime($datas['expires_in']);
         $this->storage->storeAccessToken($this->service(), $token);
