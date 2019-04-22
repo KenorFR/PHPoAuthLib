@@ -91,7 +91,11 @@ class Google extends AbstractService
     const SCOPE_TASKS                       = 'https://www.googleapis.com/auth/tasks';
 
     // Cloud services
+    const SCOPE_SERVICE_ACCOUNT             = 'https://www.googleapis.com/auth/cloud-platform';
     const SCOPE_CLOUDSTORAGE                = 'https://www.googleapis.com/auth/devstorage.read_write';
+    // https://www.googleapis.com/auth/devstorage.full_control
+    // https://www.googleapis.com/auth/devstorage.read_only
+    // https://www.googleapis.com/auth/devstorage.read_write
     const SCOPE_CONTENTFORSHOPPING          = 'https://www.googleapis.com/auth/structuredcontent'; // what even is this
     const SCOPE_USER_PROVISIONING           = 'https://apps-apis.google.com/a/feeds/user/';
     const SCOPE_GROUPS_PROVISIONING         = 'https://apps-apis.google.com/a/feeds/groups/';
